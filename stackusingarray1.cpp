@@ -1,5 +1,7 @@
+
 #include<iostream>
-#include<cstdlib> /*C Standard General Utilities Library. This header defines several general purpose functions, 
+#include<stdio.h>
+ /*C Standard General Utilities Library. This header defines several general purpose functions, 
 					including dynamic memory management, random number generation, communication with the environment, 
 					integer arithmetics, searching, sorting and converting*/
 #define MAXSIZE 100 //or const  int MAXSIZE=100
@@ -17,10 +19,9 @@ class stack
 		int *arr; 
 		// for dynamic array
 		int top;
-		int capacity;
 		// check size defined by user
 	public:
-		stack( int size = MAXSIZE) 
+		stack() ;
 		//constructor to create array dynamically
 		~stack();
 		//destructor to delete dynamically created array
@@ -35,55 +36,96 @@ class stack
 stack::stack()
 {
 	top=-1;
-	arr= new int [Maxsize];
+	arr= new int [MAXSIZE];
 }
-satck::~stack()
+stack::~stack()
 {
 	delete []arr;
 }
-bool::isEmpty()
+
+bool stack::isEmpty()
 {
 	if(top==-1)
-	    return 1;
+	    return true;
  	else
- 	     return 0;
+ 	     return false;
 }
-bool::isFull()
+bool stack::isFull()
 {
-	if(top==Maxsize-1)
-           return 1;
+	if(top==MAXSIZE-1)
+           return true;
         else
-       		return 0;
+       	   return false;
 }
-	void push(int num)
+void stack::push(int & num)
+{
+	if(isFull())
 	{
-		if(isFull())
-		{
-			cout<<"Stack is full"<<endl;
-		}
-		else
-		{
-			top++;
-			stack[top]=num;
-			cout<<"The stack is now"<<stack;
-		}
+		cout<<"Stack is full"<<endl;
 	}
-	int pop()
+	else
 	{
-		if(isEmpty())
-		{
-			cout<<"Stack is empty"<<endl;
-		}
-		else
-		{
-			return stack[top--];
-		}
+		top++;
+		arr[top]=num;
 	}
-	void peek()
+}
+int stack::pop()
+{
+	if(!isEmpty())
 	{
-		if(isEmpty())
-		{
-		}
+		return arr[top--];
+	}
+}
+int stack::peek()
+{
+	if(!isEmpty())
+	{
+		return arr[top];
+	}
+	
+}
+int stack::size()
+{
+	if(!isEmpty())
+	{
+		return top+1;
+	
+	}
+}
+int main()
+{
+	stack st;
+	a:
+		int ch;
+		cout<<"Choose any choice:"<<endl;
+		cout<<"\n1.Push:"<<endl;
+		cout<<"\n2.Pop:"<<endl;
+		cout<<"\n3.Peek:"<<endl;
+		cout<<"\n4.Size:"<<endl;
+		cout<<"\n5.eXIT:"<<endl;
+		cin>>ch;
+		switch(ch){
+			case 1:
+				cout<<"\nenter the el to be pushed";
+				int temp;
+				cin>>temp;
+				st.push(temp);
+				break;
+			case 2:
+				cout<<st.pop();
+				break;
+			case 3: 
+				cout<<st.peek();
+				break;
+			case 4:
+				cout<<st.size();
+				break;
+			case 5: exit(0);
+					
 
-
-	}
+			default:
+				cout<<"\nPlease re-enter the choice:"<<endl;
+		}
+		goto a;
+	return 0;						 		
+}
