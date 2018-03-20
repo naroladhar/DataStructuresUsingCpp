@@ -73,6 +73,7 @@ int main()
 	do
 	{
 		int ch,a;
+		cout<<"******************STACK USING SLL***********************"<<endl;
 		cout<<"1.Push"<<endl;
 		cout<<"2.Pop"<<endl;
 		cout<<"3.Display"<<endl;	
